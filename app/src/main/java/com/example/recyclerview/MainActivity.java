@@ -15,7 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-    List<String> data=new ArrayList<>();
+    List<String> data = new ArrayList<>();
     WordListAdapter adapter;
 
     @Override
@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
         setUpAdapter();
         setUpFab();
     }
+
     private void setUpFab() {
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 data.add("+ Word: " + data.size());
-                adapter.notifyItemChanged(data.size()-1);
+                Log.e("main", data.size() + "");
+                adapter.notifyItemChanged(data.size() - 1);
                 binding.recyclerView.smoothScrollToPosition(data.size() - 1);
 
             }
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpAdapter() {
-        WordListAdapter adapter = new WordListAdapter(MainActivity.this, data);
+        adapter = new WordListAdapter(MainActivity.this, data);
 
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void createIntialData() {
         for (int i = 0; i < 20; i++) {
             data.add("Word " + i);
-            Log.e("main",data+"");
+            Log.e("main", data + "");
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclerview.databinding.WordlistItemBinding;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
     private Context context;
     private List<String> mWords;
     WordlistItemBinding binding;
+    int count = 0;
+    HashMap<String, Integer> maps = new HashMap<>();
 
     public WordListAdapter(Context context, List<String> mWords) {
         this.context = context;
         this.mWords = mWords;
     }
+
 
     @NonNull
     @Override
@@ -58,11 +64,10 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         @Override
         public void onClick(View v) {
-            int position=getLayoutPosition();
-            String element=mWords.get(position);
-            mWords.set(position,"Clicked! "+element);
+            int position = getLayoutPosition();
+            String element = mWords.get(position);
+            mWords.set(position, "Clicked! " + element+" ");
             adapter.notifyDataSetChanged();
-
         }
     }
 }
